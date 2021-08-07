@@ -4,9 +4,11 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 import HomeScreen from '../components/home';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 
 type RootStackParamList = {
   Home: undefined;
+  Second: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -22,8 +24,11 @@ const ToDoStackNavigator = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{
+          headerShown: false,
+        }}
       />
+      {/* <Stack.Screen name="Second" component={} /> */}
     </Stack.Navigator>
   );
 };

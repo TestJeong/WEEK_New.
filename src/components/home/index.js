@@ -1,11 +1,13 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import React, {useState, useEffect, useCallback, useContext} from 'react';
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {testcode} from '../../reducers/catagory';
 import MainTheme from './mainTheme';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {AppContext} from '../../../App';
+import {Context} from '../../store/context';
 
 const TitleText = styled.Text`
   font-size: 20px;
@@ -77,13 +79,22 @@ const Main_Title_Text = styled.Text`
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const {count, contextDispatch} = useContext(Context);
+
   useEffect(() => {
-    dispatch(testcode(14));
-  }, []);
+    console.log('asdf', count);
+    /* dispatch(testcode(14)); */
+  }, [count]);
+
+  const onClicks = useCallback(() => {
+    contextDispatch({type: 'INCREASE', value: count + 1});
+  }, [count]);
+
   return (
     <SafeAreaView style={{flex: 1, margin: 10}}>
       <Main_Container>
         <TitleText>MY WEEK</TitleText>
+        <Button title="asdf" onPress={onClicks} />
 
         <Column_View>
           <MainTheme />
