@@ -8,6 +8,7 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {AppContext} from '../../../App';
 import {Context} from '../../store/context';
+import {useNavigation} from '@react-navigation/native';
 
 const TitleText = styled.Text`
   font-size: 20px;
@@ -80,15 +81,17 @@ const Main_Title_Text = styled.Text`
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const {count, contextDispatch} = useContext(Context);
+  const navigation = useNavigation();
 
   useEffect(() => {
-    console.log('asdf', count);
+    /* console.log('asdf', count); */
     /* dispatch(testcode(14)); */
-  }, [count]);
+  }, []);
 
   const onClicks = useCallback(() => {
-    contextDispatch({type: 'INCREASE', value: count + 1});
-  }, [count]);
+    /* contextDispatch({type: 'INCREASE', value: count + 1}); */
+    navigation.navigate('Second');
+  }, []);
 
   return (
     <SafeAreaView style={{flex: 1, margin: 10}}>
